@@ -54,6 +54,17 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+
+    @PostMapping("/registration")
+    public ResponseEntity<Void> registerNewUser(@RequestBody @Valid final UserRegistrationDto registrationDtoDto) {
+        try {
+            userService.register(registrationDtoDto);
+        } catch (UserExistsException ex) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "User exists", ex);
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removeUser(@PathVariable Long id) {
         userService.removeUser(id);

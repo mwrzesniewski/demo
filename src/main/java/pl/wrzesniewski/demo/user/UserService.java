@@ -18,4 +18,6 @@ public interface UserService {
     void changeUserPassword(Long id, String password) throws UserNotFoundException;
 
     Page<User> findByActive(boolean active, Pageable paging);
+
+    User register(UserRegistrationDto registrationDtoDto) throws UserExistsException;
 }
