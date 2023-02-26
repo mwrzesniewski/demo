@@ -39,7 +39,7 @@ public class JwtSecurityConfig {
         return http.cors().and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/authenticate","/user/**").permitAll()
+                .requestMatchers("/", "/authenticate","/user/**","/email").permitAll()
                 .anyRequest().hasRole(USER)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
